@@ -1,1 +1,36 @@
-$cor-teste: red;
+
+// BACKGROUNDS
+
+$bg-primary: #F3F4F5;
+$bg-secondary: #FFFFFF;
+$bg-muted: #E7E8E9;
+$bg-brand: #1E3A8A;
+
+// TEXT
+
+$text-primary: #191C1D;
+$text-secondary: #43474E;
+$text-accent: #55B2A2;
+$text-brand-dark: #002444;
+$text-brand: #1E3A8A;
+
+
+// BUTTONS
+
+$button-primary: linear-gradient(135deg, #002444 0%, #1A3A5C 100%);
+$button-secondary: #E7E8E9;
+$button-accent: linear-gradient(135deg, #004139 0%, #002923 100%);
+
+
+// CARDS
+
+$card-bg: #F4F4F4;
+$card-highlight-gradient: linear-gradient(90deg, #1A3A5C 0%, #002444 100%);
+$card-button-overlay: rgba(255, 255, 255, 0.10);
+
+// FONT-SIZE
+
+$font-sm: 0.875rem;
+$font-md: 1rem;
+$font-lg: 1.25rem;
+$font-title: 3rem
