@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { useAuthStore } from '@/store/auth'
 
 import Login from "@/pages/Login.vue";
 import Home from "@/pages/Home.vue";
@@ -15,29 +16,50 @@ const routes = [
     path: '/login',
     component: Login,
     meta: {
+      public: true,
       hideHeader: true,
       hideFooter: true
     }
   },
   {
     path: '/home',
-    component: Home
+    component: Home,
+    meta: { requiresAuth: true }
   },
   {
     path: '/politicas',
-    component: Politicas
+    component: Politicas,
+    meta: { requiresAuth: true }
   },
   {
     path: '/interesses',
-    component: Interesses
+    component: Interesses,
+    meta: { requiresAuth: true }
   },
   {
     path: '/orientacoes',
-    component: Orientacoes
+    component: Orientacoes,
+    meta: { requiresAuth: true }
   }
 ];
 
-export default createRouter({
+const router = createRouter({
   history: createWebHistory(),
   routes
 });
+
+router.beforeEach((to) => {
+  const auth = useAuthStore();
+  const requiresAuth = to.matched.some(route => route.meta.requiresAuth);
+  const isPublic = to.matched.some(route => route.meta.public);
+
+  if (requiresAuth && !auth.isAuthenticated) {
+    return '/login';
+  }
+
+  if (isPublic && auth.isAuthenticated) {
+    return '/home';
+  }
+});
+
+export default router;
