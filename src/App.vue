@@ -7,11 +7,35 @@ import Footer from "./components/Footer.vue";
 
 const route = useRoute();
 
-const hideHeader = computed(() => route.meta?.hideHeader);
+const hideHeader = computed(() => route.meta?.hideHeader === true);
+const hideFooter = computed(() => route.meta?.hideFooter === true)
 </script>
 
 <template>
-  <Header v-if="!hideHeader" />
-  <router-view />
-  <Footer />
+  <div class="layout">
+    <Header v-if="!hideHeader" />
+    <main class="content">
+      <div class="container">
+        <router-view />
+      </div>
+    </main>
+    <Footer v-if="!hideFooter"/>
+  </div>
 </template>
+
+<style lang="scss">
+html,
+body,
+#app {
+  height: 100%;
+}
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+}
+</style>

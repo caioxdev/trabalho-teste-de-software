@@ -14,7 +14,10 @@ const routes = [
   {
     path: '/login',
     component: Login,
-    meta: { hideHeader: true }
+    meta: {
+      hideHeader: true,
+      hideFooter: true
+    }
   },
   {
     path: '/home',

@@ -19,10 +19,9 @@ body {
   flex-direction: column;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+.container {
+  margin: 0 auto;
+  padding: 1rem 5rem;
 }
 
 @font-face {

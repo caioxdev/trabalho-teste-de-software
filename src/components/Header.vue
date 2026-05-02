@@ -16,7 +16,7 @@ const logout = () => {
 
 <template>
     <header class="header">
-      <div class="header-content">
+      <div class="container">
         <div class="logo">
           <img :src="logo" alt="Logo">
           <h1>Portal Cidadão</h1>
@@ -56,9 +56,8 @@ const logout = () => {
   background-color: $bg-secondary;
   box-shadow: $box-shadow-1;
 
-  .header-content {
-    @include flex(space-between, center, row, 16px);
-    padding: 1rem 5rem;
+  .container {
+    @include flex(space-between, center, row, 0);
   }
 
   .logo {
