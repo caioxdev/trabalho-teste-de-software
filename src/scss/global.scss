@@ -12,6 +12,10 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+body.login-page {
+  background-color: #E6E7EE;
+}
+
 .app-container {
   width: 100%;
   min-height: 100vh;
