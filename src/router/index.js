@@ -6,6 +6,8 @@ import Home from "@/pages/Home.vue";
 import Politicas from "@/pages/Politicas.vue";
 import Interesses from "@/pages/Interesses.vue";
 import Orientacoes from "@/pages/Orientacoes.vue";
+import GerenciarPoliticas from "@/pages/Gerenciar-politicas.vue";
+import CadastrarPoliticas from "@/pages/Cadastrar-politicas.vue";
 
 const routes = [
   {
@@ -32,6 +34,11 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path:'/politicas/:id',
+    component: () => import('@/pages/Detalhes.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
     path: '/interesses',
     component: Interesses,
     meta: { requiresAuth: true }
@@ -40,6 +47,22 @@ const routes = [
     path: '/orientacoes',
     component: Orientacoes,
     meta: { requiresAuth: true }
+  },
+  {
+    path: '/gerenciar-politicas',
+    component: GerenciarPoliticas,
+    meta: {
+      requiresAuth: true,
+      role: 'admin'
+    }
+  },
+  {
+    path: '/cadastrar-politicas',
+    component: CadastrarPoliticas,
+    meta: {
+      requiresAuth: true,
+      role: 'admin'
+    }
   }
 ];
 
@@ -52,9 +75,14 @@ router.beforeEach((to) => {
   const auth = useAuthStore();
   const requiresAuth = to.matched.some(route => route.meta.requiresAuth);
   const isPublic = to.matched.some(route => route.meta.public);
+  const role = to.meta.role;
 
   if (requiresAuth && !auth.isAuthenticated) {
     return '/login';
+  }
+
+  if (role === 'admin' && auth.user?.perfil !== 'admin') {
+    return '/home';
   }
 
   if (isPublic && auth.isAuthenticated) {

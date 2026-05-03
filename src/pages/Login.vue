@@ -6,21 +6,39 @@ import confirmSenhaIcone from "@/assets/icons/icone-confirmar-senha.svg";
 import mensagemAdminIcone from "@/assets/icons/icone-mensagem-admin.svg";
 import { ref, onMounted, onUnmounted } from "vue";
 import { useRouter } from "vue-router";
-import { useAuthStore } from "@/store/auth";
+import { useAuthStore } from "@/store/auth.js";
+import { useToast } from 'vue-toastification';
+import usuarios from '@/data/usuarios.js'
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 
-const entrar = async () => {
-  NProgress.start();
+const emailValue = ref('');
+const senhaValue = ref('');
+const erro = ref('');
+const toast = useToast();
 
+const entrar = async () => {
+  const usuario = usuarios.find (
+    u => u.email === emailValue.value && u.senha === senhaValue.value
+  );
+
+  if (!usuario) {
+    toast.error('E-mail ou senha incorretos');
+    return;
+  }
+
+  NProgress.start();
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
-  auth.login("token-simulado", {
-    email: "usuario@email.com",
-    perfil: perfil.value,
-  });
+  auth.login('token-simulado', usuario)
   NProgress.done();
-  router.push("/home");
+
+  if (usuario.perfil === 'admin') {
+    router.push('/gerenciar-politicas');
+  } else {
+    router.push('/home')
+  }
+
 };
 
 const perfil = ref("cidadao");
@@ -94,6 +112,7 @@ onUnmounted(() => {
               placeholder="seu@email.com"
               :icon="emailIcone"
               iconAlt="icone-email"
+              v-model="emailValue"
             />
             <inputLogin
               label="senha"
@@ -101,6 +120,7 @@ onUnmounted(() => {
               placeholder="• • • • • • • •"
               :icon="senhaIcone"
               iconAlt="icone-senha"
+              v-model="senhaValue"
             />
           </div>
           <button type="button" class="btn-entrar" @click="entrar">

@@ -1,5 +1,5 @@
 <script setup>
-defineProps({
+const props = defineProps({
   label: String,
   type: {
     type: String,
@@ -13,8 +13,14 @@ defineProps({
   iconAlt: {
     type: String,
     default: ''
+  },
+  modelValue: {
+    type: String,
+    default: ''
   }
 })
+
+const emit = defineEmits(['update:modelValue']);
 </script>
 
 <template>
@@ -27,6 +33,8 @@ defineProps({
         class="input-field"
         :placeholder="placeholder"
         :class="{ 'sem-icone': !icon }"
+        :value="modelValue"
+        @input="emit('update:modelValue', $event.target.value)"
       >
     </div>
   </div>
