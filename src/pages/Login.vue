@@ -1,32 +1,41 @@
 <script setup>
-import email from '@/assets/icons/icone-email.svg';
-import senha from '@/assets/icons/icone-senha.svg';
-import { ref, onMounted, onUnmounted } from 'vue';
-import { useRouter } from 'vue-router';
-import { useAuthStore } from '@/store/auth';
+import inputLogin from "@/components/inputLogin.vue";
+import emailIcone from "@/assets/icons/icone-email.svg";
+import senhaIcone from "@/assets/icons/icone-senha.svg";
+import confirmSenhaIcone from "@/assets/icons/icone-confirmar-senha.svg";
+import mensagemAdminIcone from "@/assets/icons/icone-mensagem-admin.svg";
+import { ref, onMounted, onUnmounted } from "vue";
+import { useRouter } from "vue-router";
+import { useAuthStore } from "@/store/auth";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
 
-const perfil = ref('cidadao');
-const aba = ref('entrar');
+const entrar = async () => {
+  NProgress.start();
+
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  auth.login("token-simulado", {
+    email: "usuario@email.com",
+    perfil: perfil.value,
+  });
+  NProgress.done();
+  router.push("/home");
+};
+
+const perfil = ref("cidadao");
+const aba = ref("entrar");
 
 const router = useRouter();
 const auth = useAuthStore();
 
 onMounted(() => {
-  document.body.classList.add('login-page')
+  document.body.classList.add("login-page");
 });
 
 onUnmounted(() => {
-  document.body.classList.remove('login-page')
+  document.body.classList.remove("login-page");
 });
-
-const entrar = () => {
-  auth.login('token-simulado', {
-    email: 'usuario@email.com',
-    perfil: perfil.value
-  });
-  router.push('/home')
-}
-
 </script>
 
 <template>
@@ -36,65 +45,111 @@ const entrar = () => {
         <button
           type="button"
           :class="{
-            ativo: aba === 'entrar'
+            ativo: aba === 'entrar',
           }"
           @click="aba = 'entrar'"
         >
-        Entrar
-      </button>
-      <button
+          Entrar
+        </button>
+        <button
           type="button"
           :class="{
-            ativo: aba === 'cadastrar'
+            ativo: aba === 'cadastrar',
           }"
           @click="aba = 'cadastrar'"
         >
-        Cadastrar
-      </button>
+          Cadastrar
+        </button>
       </div>
       <form class="login-form">
-        <div class="form-header">
-          <h1>Portal Cidadão</h1>
-          <div class="toggle">
-            <button
-              type="button"
-              :class="{
-                ativo: perfil === 'cidadao'
-              }"
-              @click="perfil = 'cidadao'"
-            >
-            Cidadão
+        <!-- ENTRAR -->
+        <div v-show="aba === 'entrar'" class="form-content">
+          <div class="form-header">
+            <h1>Portal Cidadão</h1>
+            <div class="toggle">
+              <button
+                type="button"
+                :class="{
+                  ativo: perfil === 'cidadao',
+                }"
+                @click="perfil = 'cidadao'"
+              >
+                Cidadão
+              </button>
+              <button
+                type="button"
+                :class="{
+                  ativo: perfil === 'admin',
+                }"
+                @click="perfil = 'admin'"
+              >
+                Administrador
+              </button>
+            </div>
+          </div>
+          <div class="input-group">
+            <inputLogin
+              label="email"
+              type="email"
+              placeholder="seu@email.com"
+              :icon="emailIcone"
+              iconAlt="icone-email"
+            />
+            <inputLogin
+              label="senha"
+              type="password"
+              placeholder="• • • • • • • •"
+              :icon="senhaIcone"
+              iconAlt="icone-senha"
+            />
+          </div>
+          <button type="button" class="btn-entrar" @click="entrar">
+            Entrar
           </button>
-            <button
-              type="button"
-              :class="{
-                ativo: perfil === 'admin'
-              }"
-              @click="perfil = 'admin'"
-            >
-              Administrador
-            </button>
-          </div>
+          <span>Esqueci minha senha</span>
         </div>
-
-        <div class="input-group">
-          <div class="container-input">
-            <label for="">email</label>
-            <div class="input">
-              <img :src="email" alt="icone-email">
-              <input type="email" class="input-field" placeholder="seu@email.com">
+        <!-- CADASTRAR -->
+        <div v-show="aba === 'cadastrar'" class="form-content">
+          <div class="form-header-cadastrar">
+            <h1>Portal Cidadão</h1>
+            <span>Crie sua conta</span>
+            <p>Preencha os dados abaixo para acessar os serviços digitais.</p>
+          </div>
+          <div class="input-group">
+            <inputLogin label="nome" placeholder="Seu nome completo" />
+            <inputLogin
+              label="email"
+              type="email"
+              placeholder="seu@email.com"
+              :icon="emailIcone"
+              iconAlt="icone-email"
+            />
+            <div class="input-group-row">
+              <inputLogin
+                label="senha"
+                type="password"
+                placeholder="• • • • • • • •"
+                :icon="senhaIcone"
+                iconAlt="icone-senha"
+              />
+              <inputLogin
+                label="confirmar senha"
+                type="password"
+                placeholder="• • • • • • • •"
+                :icon="confirmSenhaIcone"
+                iconAlt="icone-senha"
+              />
             </div>
           </div>
-          <div class="container-input">
-            <label for="">senha</label>
-            <div class="input">
-              <img :src="senha" alt="icone-senha">
-              <input type="password" class="input-field" placeholder="********">
-            </div>
+          <button type="button" class="btn-entrar">Cadastrar</button>
+          <div class="footer-cadastrar">
+            <div class="divisor"></div>
+            <p>
+              <img :src="mensagemAdminIcone" alt="Atenção" />
+              Acesso administrador é concedido pelo gestor da plataforma
+            </p>
           </div>
         </div>
-        <button type="button" class="btn-entrar" @click="entrar">Entrar</button>
-        <span>Esqueci minha senha</span>
       </form>
     </div>
   </div>
@@ -110,11 +165,18 @@ const entrar = () => {
   min-height: 100vh;
 }
 
+.form-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
 .card-login {
   max-width: 480px;
   width: 100%;
   border-radius: 32px;
-  background-color: #E6E7EE;
+  background-color: #e6e7ee;
   box-shadow:
     8px 8px 16px $shadow-dark,
     -8px -8px 16px $shadow-light;
@@ -132,9 +194,9 @@ const entrar = () => {
     border: none;
     border-radius: 3px solid transparent;
     background-color: transparent;
-    color: #94A3B8;
+    color: #94a3b8;
     font-size: $font-md;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
 
     &.ativo {
@@ -178,7 +240,7 @@ const entrar = () => {
         border: none;
         border-radius: 16px;
         background-color: transparent;
-        color: #64748B;
+        color: #64748b;
         font-size: $font-sm;
         font-weight: 700;
 
@@ -197,51 +259,10 @@ const entrar = () => {
     width: 100%;
     margin-top: 16px;
 
-    .container-input {
-      margin-top: 16px;
-
-      label {
-        font-size: $font-sm;
-        font-weight: 600;
-        color: #43474E;
-        text-transform: uppercase;
-      }
-
-      .input {
-        position: relative;
-        width: 100%;
-
-        img {
-          position: absolute;
-          left: 16px;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 20px;
-          height: 20px;
-
-          &[alt="icone-senha"] {
-            top: 42%;
-          }
-        }
-
-        .input-field {
-          width: 100%;
-          padding: 18px 18px 18px 48px;
-          border: none;
-          background-color: #E6E7EE;
-          border-radius: 8px;
-          line-height: 1;
-          box-shadow:
-            inset 2px 2px 5px $shadow-dark,
-            inset -2px -2px 5px $shadow-light;
-
-          &::placeholder {
-            color: #94A3B8;
-            font-size: $font-sm;
-            font-weight: 600;
-          }
-        }
-      }
+    .input-group-row {
+      display: flex;
+      width: 100%;
+      gap: 16px;
     }
   }
 
@@ -259,11 +280,62 @@ const entrar = () => {
   }
 
   span {
-    color: rgba(0, 36, 68, 0.70);
+    color: rgba(0, 36, 68, 0.7);
     font-size: $font-sm;
     font-weight: 600;
     line-height: 143%;
     margin-top: 32px;
+    cursor: pointer;
+  }
+
+  // CADASTRAR
+  .form-header-cadastrar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      color: $text-brand-dark;
+      font-size: 1.875rem;
+      font-weight: 800;
+      letter-spacing: 0.75px;
+    }
+
+    span {
+      color: $text-primary;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.75px;
+    }
+
+    p {
+      color: $text-secondary;
+      font-size: $font-sm;
+      font-weight: 400;
+      line-height: 171%;
+      text-align: center;
+    }
+  }
+  .footer-cadastrar {
+    .divisor {
+      width: 100%;
+      height: 1px;
+      background-color: rgb(209, 209, 209);
+      margin: 24px 0;
+    }
+
+    p {
+      color: $text-secondary;
+      text-align: center;
+      font-size: $font-sm;
+      font-weight: 400;
+      line-height: 162%;
+
+      img {
+        margin-right: 8px;
+      }
+    }
   }
 }
 </style>

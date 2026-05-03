@@ -1,3 +1,5 @@
+@use '@/scss/variables' as *;
+
 *,
 *::before,
 *::after {
@@ -14,6 +16,11 @@ body {
 
 body.login-page {
   background-color: #E6E7EE;
+}
+
+#nprogress .bar {
+  background: $text-brand-dark !important;
+  height: 6px !important;
 }
 
 .app-container {
