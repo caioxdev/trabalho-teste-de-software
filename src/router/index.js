@@ -75,18 +75,18 @@ router.beforeEach((to) => {
   const auth = useAuthStore();
   const requiresAuth = to.matched.some(route => route.meta.requiresAuth);
   const isPublic = to.matched.some(route => route.meta.public);
-  const role = to.meta.role;
+  const role = to.matched.find(r => r.meta.role)?.meta.role;
 
   if (requiresAuth && !auth.isAuthenticated) {
-    return '/login';
+    return { path: '/login' } ;
   }
 
   if (role === 'admin' && auth.user?.perfil !== 'admin') {
-    return '/home';
+    return { path: '/home' };
   }
 
   if (isPublic && auth.isAuthenticated) {
-    return '/home';
+    return { path: '/home' };
   }
 });
 
