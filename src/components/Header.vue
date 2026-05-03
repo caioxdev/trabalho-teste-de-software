@@ -31,7 +31,7 @@ const logout = () => {
         <UserDropdown>
           <template #trigger>
             <span class="trigger">
-              Olá, [nome]
+              Olá, {{ auth.user?.nome }}
               <img :src="perfil" alt="Perfil">
             </span>
           </template>
