@@ -3,7 +3,7 @@ import { ref, computed } from "vue";
 
 export const useAuthStore = defineStore("auth", () => {
   const token = ref(localStorage.getItem("token"));
-  const user = ref(null);
+  const user = ref(JSON.parse(localStorage.getItem("user")));
 
   const isAuthenticated = computed(() => !!token.value);
 
@@ -12,6 +12,7 @@ export const useAuthStore = defineStore("auth", () => {
     user.value = userData;
 
     localStorage.setItem("token", newToken);
+    localStorage.setItem("user", JSON.stringify(userData));
   }
 
   function logout() {
@@ -19,6 +20,7 @@ export const useAuthStore = defineStore("auth", () => {
     user.value = null;
 
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
   }
 
   return {
