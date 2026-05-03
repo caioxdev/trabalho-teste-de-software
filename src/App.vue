@@ -1,4 +1,4 @@
-<script setup lang="js">
+<script setup>
 import { useRoute } from "vue-router";
 import { computed } from "vue";
 import { useAuthStore } from "@/store/auth";

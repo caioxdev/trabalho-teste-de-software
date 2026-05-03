@@ -21,7 +21,7 @@ const toast = useToast();
 const entrar = async () => {
   if (!emailValue.value || !senhaValue.value) {
     toast.error('Preencha o e-mail e a senha');
-    return 0;
+    return;
   }
 
   const usuario = usuarios.find (
