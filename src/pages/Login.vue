@@ -2,6 +2,7 @@
 import inputLogin from "@/components/inputLogin.vue";
 import emailIcone from "@/assets/icons/icone-email.svg";
 import senhaIcone from "@/assets/icons/icone-senha.svg";
+import nomeIcone from "@/assets/icons/icone-nome.svg";
 import confirmSenhaIcone from "@/assets/icons/icone-confirmar-senha.svg";
 import mensagemAdminIcone from "@/assets/icons/icone-mensagem-admin.svg";
 import { ref, onMounted, onUnmounted } from "vue";
@@ -18,6 +19,11 @@ const erro = ref('');
 const toast = useToast();
 
 const entrar = async () => {
+  if (!emailValue.value || !senhaValue.value) {
+    toast.error('Preencha o e-mail e a senha');
+    return 0;
+  }
+
   const usuario = usuarios.find (
     u => u.email === emailValue.value && u.senha === senhaValue.value
   );
@@ -136,7 +142,13 @@ onUnmounted(() => {
             <p>Preencha os dados abaixo para acessar os serviços digitais.</p>
           </div>
           <div class="input-group">
-            <inputLogin label="nome" placeholder="Seu nome completo" />
+            <inputLogin
+              label="nome"
+              type="text"
+              placeholder="Como deseja ser chamado"
+              :icon="nomeIcone"
+              iconAlt="icone-nome"
+            />
             <inputLogin
               label="email"
               type="email"
@@ -249,7 +261,7 @@ onUnmounted(() => {
 
     .toggle {
       display: flex;
-      background-color: $bg-primary;
+      background-color: #e2e2e2;
       border-radius: 20px;
       padding: 4px;
 

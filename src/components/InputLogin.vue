@@ -78,6 +78,9 @@ const emit = defineEmits(['update:modelValue']);
       border: none;
       background-color: #E6E7EE;
       border-radius: 8px;
+      color: #9ba0a8;
+      font-size: $font-sm;
+      font-weight: 600;
       outline: none !important;
       line-height: 1;
       box-shadow:
@@ -92,6 +95,7 @@ const emit = defineEmits(['update:modelValue']);
         color: #94A3B8;
         font-size: $font-sm;
         font-weight: 600;
+        padding-left: 2px;
       }
     }
   }
