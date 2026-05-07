@@ -6,3 +6,7 @@
   flex-direction: $direction;
   gap: $gap;
 }
+
+@mixin padding-main {
+  padding: 0 3rem;
+}
