@@ -58,6 +58,7 @@ const logout = () => {
 
   .container {
     @include flex(space-between, center, row, 0);
+    padding: 1rem 3rem;
   }
 
   .logo {

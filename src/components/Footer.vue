@@ -26,6 +26,7 @@
 
   .container {
     @include flex(space-between, center, row, 0);
+    padding: 1rem 3rem;
   }
 
   .footer-lado-esq {

@@ -20,9 +20,7 @@ const isAdmin = computed(() => route.matched.some(r => r.meta.role === 'admin') 
     <HeaderAdmin v-if="isAdmin" />
     <Header v-else-if="!hideHeader" />
     <main class="content">
-      <div class="container">
         <router-view />
-      </div>
     </main>
     <Footer v-if="!hideFooter"/>
   </div>
@@ -42,5 +40,7 @@ body,
 
 .content {
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 </style>
