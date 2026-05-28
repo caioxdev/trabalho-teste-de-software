@@ -1,5 +1,130 @@
+<template>
+  <div class="container">
+    <div class="card-login">
+      <div class="tabs">
+        <button
+          type="button"
+          :class="{
+            ativo: aba === 'entrar',
+          }"
+          @click="aba = 'entrar'"
+        >
+          Entrar
+        </button>
+        <button
+          type="button"
+          :class="{
+            ativo: aba === 'cadastrar',
+          }"
+          @click="aba = 'cadastrar'"
+        >
+          Cadastrar
+        </button>
+      </div>
+      <form class="login-form">
+        <!-- ENTRAR -->
+        <div v-show="aba === 'entrar'" class="form-content">
+          <div class="form-header">
+            <h1>Portal Cidadão</h1>
+            <div class="toggle">
+              <button
+                type="button"
+                :class="{
+                  ativo: perfil === 'cidadao',
+                }"
+                @click="perfil = 'cidadao'"
+              >
+                Cidadão
+              </button>
+              <button
+                type="button"
+                :class="{
+                  ativo: perfil === 'admin',
+                }"
+                @click="perfil = 'admin'"
+              >
+                Administrador
+              </button>
+            </div>
+          </div>
+          <div class="input-group">
+            <InputLogin
+              label="email"
+              type="email"
+              placeholder="seu@email.com"
+              :icon="emailIcone"
+              iconAlt="icone-email"
+              v-model="emailValue"
+            />
+            <InputLogin
+              label="senha"
+              type="password"
+              placeholder="• • • • • • • •"
+              :icon="senhaIcone"
+              iconAlt="icone-senha"
+              v-model="senhaValue"
+            />
+          </div>
+          <button type="button" class="btn-entrar" @click="entrar">
+            Entrar
+          </button>
+          <span>Esqueci minha senha</span>
+        </div>
+        <!-- CADASTRAR -->
+        <div v-show="aba === 'cadastrar'" class="form-content">
+          <div class="form-header-cadastrar">
+            <h1>Portal Cidadão</h1>
+            <span>Crie sua conta</span>
+            <p>Preencha os dados abaixo para acessar os serviços digitais.</p>
+          </div>
+          <div class="input-group">
+            <InputLogin
+              label="nome"
+              type="text"
+              placeholder="Como deseja ser chamado"
+              :icon="nomeIcone"
+              iconAlt="icone-nome"
+            />
+            <InputLogin
+              label="email"
+              type="email"
+              placeholder="seu@email.com"
+              :icon="emailIcone"
+              iconAlt="icone-email"
+            />
+            <div class="input-group-row">
+              <InputLogin
+                label="senha"
+                type="password"
+                placeholder="• • • • • • • •"
+                :icon="senhaIcone"
+                iconAlt="icone-senha"
+              />
+              <InputLogin
+                label="confirmar senha"
+                type="password"
+                placeholder="• • • • • • • •"
+                :icon="confirmSenhaIcone"
+                iconAlt="icone-senha"
+              />
+            </div>
+          </div>
+          <button type="button" class="btn-entrar">Cadastrar</button>
+          <div class="footer-cadastrar">
+            <div class="divisor"></div>
+            <p>
+              <img :src="mensagemAdminIcone" alt="Atenção" />
+              Acesso administrador é concedido pelo gestor da plataforma
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</template>
+
 <script setup>
-import inputLogin from "@/components/inputLogin.vue";
+import InputLogin from "@/components/InputLogin.vue";
 import emailIcone from "@/assets/icons/icone-email.svg";
 import senhaIcone from "@/assets/icons/icone-senha.svg";
 import nomeIcone from "@/assets/icons/icone-nome.svg";
@@ -62,130 +187,6 @@ onUnmounted(() => {
 });
 </script>
 
-<template>
-  <div class="container">
-    <div class="card-login">
-      <div class="tabs">
-        <button
-          type="button"
-          :class="{
-            ativo: aba === 'entrar',
-          }"
-          @click="aba = 'entrar'"
-        >
-          Entrar
-        </button>
-        <button
-          type="button"
-          :class="{
-            ativo: aba === 'cadastrar',
-          }"
-          @click="aba = 'cadastrar'"
-        >
-          Cadastrar
-        </button>
-      </div>
-      <form class="login-form">
-        <!-- ENTRAR -->
-        <div v-show="aba === 'entrar'" class="form-content">
-          <div class="form-header">
-            <h1>Portal Cidadão</h1>
-            <div class="toggle">
-              <button
-                type="button"
-                :class="{
-                  ativo: perfil === 'cidadao',
-                }"
-                @click="perfil = 'cidadao'"
-              >
-                Cidadão
-              </button>
-              <button
-                type="button"
-                :class="{
-                  ativo: perfil === 'admin',
-                }"
-                @click="perfil = 'admin'"
-              >
-                Administrador
-              </button>
-            </div>
-          </div>
-          <div class="input-group">
-            <inputLogin
-              label="email"
-              type="email"
-              placeholder="seu@email.com"
-              :icon="emailIcone"
-              iconAlt="icone-email"
-              v-model="emailValue"
-            />
-            <inputLogin
-              label="senha"
-              type="password"
-              placeholder="• • • • • • • •"
-              :icon="senhaIcone"
-              iconAlt="icone-senha"
-              v-model="senhaValue"
-            />
-          </div>
-          <button type="button" class="btn-entrar" @click="entrar">
-            Entrar
-          </button>
-          <span>Esqueci minha senha</span>
-        </div>
-        <!-- CADASTRAR -->
-        <div v-show="aba === 'cadastrar'" class="form-content">
-          <div class="form-header-cadastrar">
-            <h1>Portal Cidadão</h1>
-            <span>Crie sua conta</span>
-            <p>Preencha os dados abaixo para acessar os serviços digitais.</p>
-          </div>
-          <div class="input-group">
-            <inputLogin
-              label="nome"
-              type="text"
-              placeholder="Como deseja ser chamado"
-              :icon="nomeIcone"
-              iconAlt="icone-nome"
-            />
-            <inputLogin
-              label="email"
-              type="email"
-              placeholder="seu@email.com"
-              :icon="emailIcone"
-              iconAlt="icone-email"
-            />
-            <div class="input-group-row">
-              <inputLogin
-                label="senha"
-                type="password"
-                placeholder="• • • • • • • •"
-                :icon="senhaIcone"
-                iconAlt="icone-senha"
-              />
-              <inputLogin
-                label="confirmar senha"
-                type="password"
-                placeholder="• • • • • • • •"
-                :icon="confirmSenhaIcone"
-                iconAlt="icone-senha"
-              />
-            </div>
-          </div>
-          <button type="button" class="btn-entrar">Cadastrar</button>
-          <div class="footer-cadastrar">
-            <div class="divisor"></div>
-            <p>
-              <img :src="mensagemAdminIcone" alt="Atenção" />
-              Acesso administrador é concedido pelo gestor da plataforma
-            </p>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-</template>
 
 <style lang="scss" scoped>
 @use "@/scss/variables.scss" as *;
