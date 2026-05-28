@@ -1,6 +1,6 @@
 <script setup>
-import CabecalhoSecao from '@/components/politicas/CabecalhoSecao.vue';
-import CardPolitica from '@/components/politicas/CardPolitica.vue';
+import CabecalhoSecao from '@/components/shared/CabecalhoSecao.vue';
+import CardPolitica from '@/components/shared/CardPolitica.vue';
 
 defineProps({
   policies: {
@@ -38,7 +38,7 @@ defineProps({
 </template>
 
 <style lang="scss" scoped>
-@use '@/scss/variables.scss' as *;
+@use '@/styles/variables.scss' as *;
 
 .featured-policies {
   display: flex;

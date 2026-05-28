@@ -43,7 +43,7 @@ defineProps({
 </template>
 
 <style lang="scss" scoped>
-@use '@/scss/variables.scss' as *;
+@use '@/styles/variables.scss' as *;
 
 .app-button {
   display: inline-flex;

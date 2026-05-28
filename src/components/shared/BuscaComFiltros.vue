@@ -40,7 +40,7 @@ const emit = defineEmits(['update:modelValue', 'update:filter']);
 </template>
 
 <style lang="scss" scoped>
-@use '@/scss/variables.scss' as *;
+@use '@/styles/variables.scss' as *;
 
 .search-with-filters {
   display: flex;

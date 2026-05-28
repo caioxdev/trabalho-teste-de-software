@@ -50,7 +50,7 @@ defineProps({
 </template>
 
 <style lang="scss" scoped>
-@use '@/scss/variables.scss' as *;
+@use '@/styles/variables.scss' as *;
 
 .policy-card {
   display: flex;

@@ -36,14 +36,16 @@ portal-cidadao/
 ├── test-results/
 ├── public/
 ├── src/
-│   ├── assets/
+│   ├── assets/          # ícones, fontes e imagens
 │   ├── components/
-│   ├── composables/
-│   ├── data/
-│   ├── pages/
-│   ├── router/
-│   ├── scss/
-│   ├── store/
+│   │   ├── ui/          # componentes genéricos (Botao, InputLogin, SearchInput…)
+│   │   ├── layout/      # estrutura da página (Header, Footer, UserDropdown…)
+│   │   └── shared/      # componentes de uso específico (CardPolitica, HeroInicial…)
+│   ├── data/            # dados simulados (políticas, usuários)
+│   ├── pages/           # views/rotas da aplicação
+│   ├── router/          # configuração do Vue Router
+│   ├── stores/          # estado global com Pinia (ex.: autenticação)
+│   ├── styles/          # variáveis, mixins e estilos globais (SCSS)
 │   ├── App.vue
 │   └── main.js
 ├── package.json

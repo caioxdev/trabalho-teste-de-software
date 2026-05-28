@@ -25,8 +25,8 @@ import setaDireita from '@/assets/icons/seta-direita.svg';
 </template>
 
 <style lang="scss" scoped>
-@use '@/scss/mixins.scss' as *;
-@use '@/scss/variables.scss' as *;
+@use '@/styles/mixins.scss' as *;
+@use '@/styles/variables.scss' as *;
 
 .orientation-banner {
   @include padding-main;

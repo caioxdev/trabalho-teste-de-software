@@ -20,8 +20,8 @@ const politica = computed(() =>
 </script>
 
 <style lang="scss" scoped>
-@use '@/scss/mixins.scss' as *;
-@use '@/scss/variables.scss' as *;
+@use '@/styles/mixins.scss' as *;
+@use '@/styles/variables.scss' as *;
 
 .detalhes {
   @include padding-main;

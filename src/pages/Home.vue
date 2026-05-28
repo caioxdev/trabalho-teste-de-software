@@ -38,10 +38,10 @@ import { ref, computed } from 'vue';
 import setaDireita from '@/assets/icons/seta-direita.svg';
 import { filtrosArea, politicasDestaque } from '@/data/politicas';
 import Botao from '@/components/ui/Botao.vue';
-import HeroInicial from '@/components/home/HeroInicial.vue';
-import BuscaComFiltros from '@/components/home/BuscaComFiltros.vue';
-import PoliticasDestaque from '@/components/home/PoliticasDestaque.vue';
-import BannerOrientacao from '@/components/home/BannerOrientacao.vue';
+import HeroInicial from '@/components/shared/HeroInicial.vue';
+import BuscaComFiltros from '@/components/shared/BuscaComFiltros.vue';
+import PoliticasDestaque from '@/components/shared/PoliticasDestaque.vue';
+import BannerOrientacao from '@/components/shared/BannerOrientacao.vue';
 
 const busca = ref('');
 const filtroAtivo = ref('tudo');
@@ -68,7 +68,7 @@ const politicasFiltradas = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-@use '@/scss/mixins.scss' as *;
+@use '@/styles/mixins.scss' as *;
 
 .home-main {
   display: flex;

@@ -39,7 +39,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang="scss" scoped>
-@use "@/scss/variables" as *;
+@use "@/styles/variables" as *;
 
 .user-dropdown {
   position: relative;

@@ -16,8 +16,8 @@
 </template>
 
 <style lang="scss" scoped>
-@use "@/scss/variables" as *;
-@use "@/scss/mixins" as *;
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
 
 .footer {
   width: 100%;

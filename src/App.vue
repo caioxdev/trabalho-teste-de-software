@@ -1,7 +1,7 @@
 <script setup>
 import { useRoute } from "vue-router";
 import { computed } from "vue";
-import { useAuthStore } from "@/store/auth";
+import { useAuthStore } from "@/stores/auth";
 
 import HeaderAdmin from "./components/layout/HeaderAdmin.vue"
 import Header from "./components/layout/Header.vue";

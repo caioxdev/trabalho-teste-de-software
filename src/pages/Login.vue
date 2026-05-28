@@ -132,7 +132,7 @@ import confirmSenhaIcone from "@/assets/icons/icone-confirmar-senha.svg";
 import mensagemAdminIcone from "@/assets/icons/icone-mensagem-admin.svg";
 import { ref, onMounted, onUnmounted } from "vue";
 import { useRouter } from "vue-router";
-import { useAuthStore } from "@/store/auth.js";
+import { useAuthStore } from "@/stores/auth.js";
 import { useToast } from 'vue-toastification';
 import usuarios from '@/data/usuarios.js'
 import NProgress from "nprogress";
@@ -189,7 +189,7 @@ onUnmounted(() => {
 
 
 <style lang="scss" scoped>
-@use "@/scss/variables.scss" as *;
+@use "@/styles/variables.scss" as *;
 
 .container {
   display: flex;

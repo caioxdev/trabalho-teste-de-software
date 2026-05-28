@@ -3,7 +3,7 @@ import logo from '@/assets/icons/icone-logo.svg';
 import perfil from '@/assets/icons/icone-perfil.svg';
 import UserDropdown from './UserDropdown.vue';
 import { useRouter } from 'vue-router';
-import { useAuthStore } from '@/store/auth.js';
+import { useAuthStore } from '@/stores/auth.js';
 
 const router = useRouter();
 const auth = useAuthStore();
@@ -46,8 +46,8 @@ const logout = () => {
 </template>
 
 <style lang="scss" scoped>
-@use "@/scss/variables" as *;
-@use "@/scss/mixins" as *;
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
 
 .header {
   width: 100%;
