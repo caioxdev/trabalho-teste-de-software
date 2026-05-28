@@ -1,3 +1,5 @@
+@use '@/scss/variables.scss' as *;
+
 // FLEX
 @mixin flex($justify: center, $align: center, $direction: row, $gap: 0) {
   display: flex;
@@ -8,5 +10,6 @@
 }
 
 @mixin padding-main {
-  padding: 0 3rem;
+  padding-left: $padding-inline;
+  padding-right: $padding-inline;
 }

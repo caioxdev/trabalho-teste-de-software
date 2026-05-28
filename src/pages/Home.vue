@@ -1,134 +1,87 @@
-<script setup>
-import setaDireita from "@/assets/icons/seta-direita.svg";
-import { RouterLink } from "vue-router";
-</script>
-
 <template>
-  <section class="hero">
-    <div class="container-topo">
-      <h1>Encontre os programas sociais que você tem direito</h1>
-      <p>
-        Consulte, filtre e acompanhe políticas públicas de assistência social em
-        um só lugar. Uma plataforma feita para garantir seus direitos
-        fundamentais.
-      </p>
-      <div class="container-btn-topo">
-        <RouterLink id="btn-explorar-politicas" to="/politicas">
-          Explorar Políticas <img :src="setaDireita" alt="Seta direita" />
-        </RouterLink>
-        <RouterLink id="btn-como-funciona" to="/orientacoes">Como funciona?</RouterLink>
-      </div>
+  <HeroInicial
+    title="Encontre os programas sociais que você tem direito"
+    subtitle="Consulte, filtre e acompanhe políticas públicas de assistência social em um só lugar. Uma plataforma feita para garantir seus direitos fundamentais."
+  >
+    <Botao
+      variant="primary"
+      to="/politicas"
+      :icon="setaDireita"
+      icon-alt="Seta direita"
+    >
+      Explorar Políticas
+    </Botao>
+    <Botao
+      variant="secondary"
+      to="/orientacoes"
+    >
+      Como funciona?
+    </Botao>
+  </HeroInicial>
+
+  <main class="home-main">
+    <div class="home-main__content">
+      <BuscaComFiltros
+        v-model="busca"
+        v-model:filter="filtroAtivo"
+        :filters="filtrosArea"
+        placeholder="Busque por área: saúde, educação, assistência social..."
+      />
+      <PoliticasDestaque :policies="politicasFiltradas" />
     </div>
-  </section>
-  <section class="secao-busca">
-    <p>Teste</p>
-  </section>
-  <main>
-    <h2>Teste</h2>
+    <BannerOrientacao />
   </main>
 </template>
 
+<script setup>
+import { ref, computed } from 'vue';
+import setaDireita from '@/assets/icons/seta-direita.svg';
+import { filtrosArea, politicasDestaque } from '@/data/politicas';
+import Botao from '@/components/ui/Botao.vue';
+import HeroInicial from '@/components/home/HeroInicial.vue';
+import BuscaComFiltros from '@/components/home/BuscaComFiltros.vue';
+import PoliticasDestaque from '@/components/home/PoliticasDestaque.vue';
+import BannerOrientacao from '@/components/home/BannerOrientacao.vue';
+
+const busca = ref('');
+const filtroAtivo = ref('tudo');
+
+const politicasFiltradas = computed(() => {
+  let lista = politicasDestaque;
+
+  if (filtroAtivo.value !== 'tudo') {
+    lista = lista.filter((p) => p.areas.includes(filtroAtivo.value));
+  }
+
+  const termo = busca.value.trim().toLowerCase();
+  if (termo) {
+    lista = lista.filter(
+      (p) =>
+        p.title.toLowerCase().includes(termo) ||
+        p.description.toLowerCase().includes(termo) ||
+        p.category.toLowerCase().includes(termo),
+    );
+  }
+
+  return lista;
+});
+</script>
+
 <style lang="scss" scoped>
-@use "@/scss/variables.scss" as *;
-@use "@/scss/mixins.scss" as *;
+@use '@/scss/mixins.scss' as *;
 
-.hero {
-  width: 100%;
-  min-height: 465px;
-  background: url("@/assets/img/imagem-fundo-home.webp") center/cover no-repeat;
+.home-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 
-  .container-topo {
+  &__content {
+    @include padding-main;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    margin: 0 auto;
-    max-width: 792px;
-    padding-top: 5.625rem;
-
-    h1 {
-      color: #fff;
-      font-size: 3rem;
-      font-weight: 800;
-      line-height: 100%;
-      width: 700px;
-      letter-spacing: 1.8px;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-
-      &::before {
-        content: "Encontre os programas sociais que você tem direito";
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-        filter: blur(18px);
-        opacity: 0.6;
-      }
-    }
-
-    p {
-      width: 649px;
-      color: #c3c3c3;
-      font-size: 1rem;
-      font-weight: 400;
-      line-height: 140%;
-      text-align: justify;
-      margin: 2rem 0 4rem;
-    }
-
-    .container-btn-topo {
-      display: flex;
-      gap: 48px;
-
-      #btn-explorar-politicas {
-        display: flex;
-        padding: 1rem 2rem;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-        border-radius: 48px;
-        background: $button-primary;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-
-        text-decoration: none;
-        color: #fff;
-        text-align: center;
-        font-size: 0.875rem;
-        font-weight: 700;
-        line-height: 155%;
-
-        img {
-          filter: brightness(0) invert(1);
-        }
-      }
-
-      #btn-como-funciona {
-        display: flex;
-        padding: 1rem 2rem;
-        justify-content: center;
-        align-items: center;
-        border-radius: 48px;
-        background: $button-secondary;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-
-        text-decoration: none;
-        color: $text-brand-dark;
-        text-align: center;
-        font-size: 0.875rem;
-        font-weight: 700;
-        line-height: 155%;
-      }
-    }
+    gap: 3rem;
+    width: 100%;
+    margin-top: 3rem;
   }
 }
-
-.secao-busca {
-  @include padding-main;
-}
-
-main {
-  @include padding-main;
-}
-
 </style>
