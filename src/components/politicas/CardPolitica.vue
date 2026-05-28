@@ -1,5 +1,5 @@
 <script setup>
-import Botao from '@/components/Botao.vue';
+import Botao from '@/components/ui/Botao.vue';
 
 defineProps({
   id: {

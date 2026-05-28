@@ -3,9 +3,9 @@ import { useRoute } from "vue-router";
 import { computed } from "vue";
 import { useAuthStore } from "@/store/auth";
 
-import HeaderAdmin from "./components/HeaderAdmin.vue"
-import Header from "./components/Header.vue";
-import Footer from "./components/Footer.vue";
+import HeaderAdmin from "./components/layout/HeaderAdmin.vue"
+import Header from "./components/layout/Header.vue";
+import Footer from "./components/layout/Footer.vue";
 
 const route = useRoute();
 const auth = useAuthStore();

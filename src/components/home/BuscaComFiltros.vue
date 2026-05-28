@@ -1,6 +1,6 @@
 <script setup>
-import SearchInput from '@/components/SearchInput.vue';
-import FilterChips from '@/components/FilterChips.vue';
+import SearchInput from '@/components/ui/SearchInput.vue';
+import FilterChips from '@/components/ui/FilterChips.vue';
 
 defineProps({
   modelValue: {

@@ -37,11 +37,11 @@
 import { ref, computed } from 'vue';
 import setaDireita from '@/assets/icons/seta-direita.svg';
 import { filtrosArea, politicasDestaque } from '@/data/politicas';
-import Botao from '@/components/Botao.vue';
-import HeroInicial from '@/components/HeroInicial.vue';
-import BuscaComFiltros from '@/components/BuscaComFiltros.vue';
-import PoliticasDestaque from '@/components/PoliticasDestaque.vue';
-import BannerOrientacao from '@/components/BannerOrientacao.vue';
+import Botao from '@/components/ui/Botao.vue';
+import HeroInicial from '@/components/home/HeroInicial.vue';
+import BuscaComFiltros from '@/components/home/BuscaComFiltros.vue';
+import PoliticasDestaque from '@/components/home/PoliticasDestaque.vue';
+import BannerOrientacao from '@/components/home/BannerOrientacao.vue';
 
 const busca = ref('');
 const filtroAtivo = ref('tudo');

@@ -124,7 +124,7 @@
 </template>
 
 <script setup>
-import InputLogin from "@/components/InputLogin.vue";
+import InputLogin from "@/components/ui/InputLogin.vue";
 import emailIcone from "@/assets/icons/icone-email.svg";
 import senhaIcone from "@/assets/icons/icone-senha.svg";
 import nomeIcone from "@/assets/icons/icone-nome.svg";

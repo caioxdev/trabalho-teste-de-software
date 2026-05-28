@@ -1,6 +1,6 @@
 <script setup>
-import CabecalhoSecao from '@/components/CabecalhoSecao.vue';
-import CardPolitica from '@/components/CardPolitica.vue';
+import CabecalhoSecao from '@/components/politicas/CabecalhoSecao.vue';
+import CardPolitica from '@/components/politicas/CardPolitica.vue';
 
 defineProps({
   policies: {

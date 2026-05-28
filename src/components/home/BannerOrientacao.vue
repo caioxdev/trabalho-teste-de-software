@@ -1,5 +1,5 @@
 <script setup>
-import Botao from '@/components/Botao.vue';
+import Botao from '@/components/ui/Botao.vue';
 import setaDireita from '@/assets/icons/seta-direita.svg';
 </script>
 
