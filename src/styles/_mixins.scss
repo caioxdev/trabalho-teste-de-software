@@ -10,6 +10,5 @@
 }
 
 @mixin padding-main {
-  padding-left: $padding-inline;
-  padding-right: $padding-inline;
+  padding: $padding-inline;
 }

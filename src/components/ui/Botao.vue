@@ -3,7 +3,7 @@ defineProps({
   variant: {
     type: String,
     default: 'primary',
-    validator: (v) => ['primary', 'secondary', 'card'].includes(v),
+    validator: (v) => ['primary', 'secondary', 'card', 'outline'].includes(v),
   },
   to: {
     type: [String, Object],
@@ -92,6 +92,19 @@ defineProps({
     border-radius: 6px;
     background: $button-secondary;
     color: $text-primary;
+    font-size: $font-md;
+    font-weight: 700;
+    line-height: 150%;
+    box-shadow: none;
+  }
+
+  &--outline {
+    width: 100%;
+    padding: 18px 2px;
+    border: 2px solid $text-brand-dark;
+    border-radius: 48px;
+    background: transparent;
+    color: $text-brand-dark;
     font-size: $font-md;
     font-weight: 700;
     line-height: 150%;
