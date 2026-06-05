@@ -14,8 +14,14 @@ defineProps({
 <template>
   <section class="hero">
     <div class="hero__content">
-      <h1 class="hero__title" :data-text="title">{{ title }}</h1>
-      <p class="hero__subtitle">{{ subtitle }}</p>
+      <h1 class="hero__title">
+        {{ title }}
+      </h1>
+
+      <p class="hero__subtitle">
+        {{ subtitle }}
+      </p>
+
       <div class="hero__actions">
         <slot />
       </div>
@@ -27,55 +33,95 @@ defineProps({
 @use '@/styles/variables.scss' as *;
 
 .hero {
+  position: relative;
   width: 100%;
-  min-height: 465px;
-  background: url('@/assets/img/imagem-fundo-home.webp') center/cover no-repeat;
+  min-height: 500px;
+
+  background:
+    linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 100%),
+    url('@/assets/img/imagem-fundo-home.webp') center/cover no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &__content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
     margin: 0 auto;
-    max-width: 792px;
-    padding-top: 5.625rem;
+    padding: 5rem 2rem;
+    text-align: center;
+    animation: fadeUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
   }
 
   &__title {
-    color: #fff;
-    font-size: $font-title;
-    font-weight: 800;
-    line-height: 100%;
-    max-width: 700px;
-    letter-spacing: 1.8px;
-    text-align: center;
-    position: relative;
-    z-index: 2;
+    color: #ffffff;
+    font-size: clamp(2.5rem, 6vw, $font-title);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    margin: 0 0 1rem 0;
 
-    &::before {
-      content: attr(data-text);
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      filter: blur(18px);
-      opacity: 0.6;
+    background: linear-gradient(135deg, #fff, rgba(255, 255, 255, 0.9));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: none;
+
+    @supports not (background-clip: text) {
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
   }
 
   &__subtitle {
-    max-width: 649px;
-    color: #c3c3c3;
-    font-size: $font-md;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: clamp(1rem, 3vw, $font-md);
     font-weight: 400;
-    line-height: 140%;
-    text-align: justify;
-    margin: 2rem 0 4rem;
+    line-height: 1.5;
+    max-width: 650px;
+    margin: 0 auto 2.5rem auto;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   }
 
   &__actions {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 48px;
+    gap: 1rem;
+
+    // Totalmente limpo - sem fundo, sem blur, sem borda
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    padding: 0;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+
+    &__content {
+      padding: 3rem 1.5rem;
+    }
+
+    &__subtitle {
+      margin-bottom: 2rem;
+    }
   }
 }
 </style>
