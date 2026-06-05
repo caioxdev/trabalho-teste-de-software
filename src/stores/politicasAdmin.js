@@ -1,6 +1,10 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import { politicasAdminInicial } from '@/data/politicasAdmin';
+import {
+  politicasAdminInicial,
+  criarSlug,
+} from '@/data/politicasAdmin';
+import adminBf from '@/assets/icons/admin-bf.svg';
 
 const STORAGE_KEY = 'portal-politicas-admin';
 
@@ -21,9 +25,39 @@ export const usePoliticasAdminStore = defineStore('politicasAdmin', () => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(lista.value));
   }
 
+  function obterPorId(id) {
+    return lista.value.find((p) => p.id === id) ?? null;
+  }
+
   function remover(id) {
     lista.value = lista.value.filter((p) => p.id !== id);
     persistir();
+  }
+
+  function salvar(dados, idExistente = null) {
+    const id = idExistente ?? criarSlug(dados.nome);
+    const existente = lista.value.find((p) => p.id === id);
+    const registro = {
+      id,
+      titulo: dados.nome,
+      categoria: dados.categoria,
+      publicoAlvo: dados.publicoAlvo,
+      descricao: dados.descricao,
+      documentos: dados.documentos,
+      orgao: dados.orgao,
+      prazo: dados.prazo,
+      criterios: dados.criterios,
+      icone: existente?.icone ?? adminBf,
+    };
+
+    if (existente) {
+      lista.value = lista.value.map((p) => (p.id === id ? registro : p));
+    } else {
+      lista.value = [...lista.value, registro];
+    }
+
+    persistir();
+    return id;
   }
 
   function restaurarPadrao() {
@@ -33,7 +67,9 @@ export const usePoliticasAdminStore = defineStore('politicasAdmin', () => {
 
   return {
     lista,
+    obterPorId,
     remover,
+    salvar,
     restaurarPadrao,
   };
 });
