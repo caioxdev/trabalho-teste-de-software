@@ -196,6 +196,7 @@ onUnmounted(() => {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  padding: 2rem 0;
 }
 
 .form-content {
