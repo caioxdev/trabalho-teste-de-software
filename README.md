@@ -33,7 +33,7 @@ O Portal Cidadão é um projeto acadêmico que organiza e divulga políticas pú
 ```bash
 portal-cidadao/
 ├── docs/
-├── test-results/
+├── tests/
 ├── public/
 ├── src/
 │   ├── assets/          # ícones, fontes e imagens
@@ -79,6 +79,14 @@ npm run dev
 ## Documentação do Time
 
 O guia de branches, padrão de commits, fluxo de desenvolvimento e testes estão disponíveis na **Wiki** do repositório.
+
+---
+
+## Documentação Técnica
+
+A documentação de testes e qualidade do software está disponível em:
+
+- [Documentação Técnica](./docs/docs.md)
 
 ---
 
