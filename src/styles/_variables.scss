@@ -1,4 +1,8 @@
 
+// LAYOUT
+
+$padding-inline: 1rem 3rem; // alinhado ao header e footer
+
 // BACKGROUNDS
 
 $bg-primary: #F3F4F5;
@@ -27,6 +31,13 @@ $button-accent: linear-gradient(135deg, #004139 0%, #002923 100%);
 $card-bg: #F4F4F4;
 $card-highlight-gradient: linear-gradient(90deg, #1A3A5C 0%, #002444 100%);
 $card-button-overlay: rgba(255, 255, 255, 0.10);
+
+// BOX-SHADOW
+
+$box-shadow-1: 0 10px 40px 0 rgba(0, 0, 0, 0.15);
+$box-shadow-2: 10px 0 40px 0 rgba(0, 0, 0, 0.15);
+$shadow-dark: rgba(17, 12, 46, 0.08);
+$shadow-light: rgba(255, 255, 255, 0.9);
 
 // FONT-SIZE
 
