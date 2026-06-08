@@ -1,7 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router';
 import iconeSeparador from '@/assets/icons/icone-separador.svg';
-import iconeSetaEsq from '@/assets/icons/icone-seta-esq.svg';
 
 defineProps({
   titulo: {
@@ -23,13 +22,10 @@ function voltar() {
 
 <template>
   <div class="detalhes-nav">
-    <button
-      type="button"
-      class="detalhes-nav__back"
-      aria-label="Voltar"
-      @click="voltar"
-    >
-      <img :src="iconeSetaEsq" alt="">
+    <button type="button" class="detalhes-nav__back" aria-label="Voltar" @click="voltar">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3.825 9H16V7H3.825L9.425 1.4L8 0L0 8L8 16L9.425 14.6L3.825 9Z" fill="currentColor" />
+      </svg>
     </button>
     <nav class="detalhes-nav__breadcrumb" aria-label="Navegação">
       <RouterLink to="/home" class="detalhes-nav__crumb">
@@ -69,8 +65,8 @@ function voltar() {
     cursor: pointer;
 
     img {
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
     }
   }
 
