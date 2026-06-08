@@ -10,23 +10,38 @@ Plataforma web para centralizar e facilitar o acesso a políticas públicas de a
 
 ## Sobre o Projeto
 
-O Portal Cidadão é um projeto acadêmico que organiza e divulga políticas públicas com foco em assistência social. A proposta é melhorar o acesso à informação, tornando a navegação mais simples, moderna e acessível.
+O Portal Cidadão é um projeto acadêmico desenvolvido para centralizar informações sobre políticas públicas de assistência social, permitindo que cidadãos consultem programas, filtrem oportunidades e registrem interesse de forma simples e acessível.
 
 ---
 
 ## Tecnologias
 
 - Vue 3
-- Sass (SCSS)
-- Vite
+- Vite 8
 - Pinia
 - Vue Router
+- Sass (SCSS)
+- Vitest
 - Vue Toastification
 - NProgress
-- Vitest
 - Commitizen
 
 ---
+
+## Deploy
+
+[Acessar projeto](https://portal-cidadao.vercel.app)
+
+---
+
+## Credenciais de Teste
+
+| Email | Senha | Perfil |
+|--------|--------|--------|
+| cidadao@email.com | 12345678 | Cidadão |
+| admin@email.com | admin123 | Administrador |
+
+___
 
 ## Estrutura do Projeto
 
@@ -54,9 +69,11 @@ portal-cidadao/
 
 ---
 
-## Como Executar
+## Como Executar Localmente
 
 ```bash
+git clone https://github.com/caioxdev/portal-cidadao.git
+cd portal-cidadao
 npm install
 npm run dev
 ```
@@ -78,7 +95,7 @@ npm run dev
 
 ## Documentação do Time
 
-O guia de branches, padrão de commits, fluxo de desenvolvimento e testes estão disponíveis na **Wiki** do repositório.
+O guia de branches, padrão de commits, fluxo de desenvolvimento e testes estão disponíveis na [Wiki](https://github.com/caioxdev/portal-cidadao/wiki) do repositório.
 
 ---
 
@@ -86,7 +103,7 @@ O guia de branches, padrão de commits, fluxo de desenvolvimento e testes estão
 
 A documentação de testes e qualidade do software está disponível em:
 
-- [Documentação Técnica](./docs/docs.md)
+- [Documentação Técnica](docs/docs.md)
 
 ---
 
@@ -125,15 +142,6 @@ Protótipo navegável disponível no [Figma](https://www.figma.com/proto/BxwZWjf
 ### Tela Orientações
 <img alt="TELA ORIENTAÇÕES" src="https://github.com/user-attachments/assets/6b70f1a2-f545-4e7e-b3f9-ae12f2240ad5" />
 
-## Modals
-
-### Modal de Registrar Interesse
-<img alt="modal-registrar interesse" src="https://github.com/user-attachments/assets/218a8694-1c9a-41de-887b-6d5f7b065cd6" />
-
-### Modal de Filtrar Políticas
-<img alt="modal-filtrar-politicas" src="https://github.com/user-attachments/assets/d27e3594-0a70-451a-b968-92cbc6be39c1" />
-
-
 ## Administrador
 
 ### Tela de Gerenciar Políticas
@@ -142,8 +150,15 @@ Protótipo navegável disponível no [Figma](https://www.figma.com/proto/BxwZWjf
 ### Tela de Cadastrar Políticas
 <img alt="TELA CADASTRAR POLITICA - ADMIN" src="https://github.com/user-attachments/assets/0dd759ff-0b47-446c-b22f-35ead0f3a0db" />
 
----
+## Modals
 
+### Modal de Registrar Interesse
+<img alt="modal-registrar interesse" src="https://github.com/user-attachments/assets/218a8694-1c9a-41de-887b-6d5f7b065cd6" />
+
+### Modal de Filtrar Políticas
+<img alt="modal-filtrar-politicas" src="https://github.com/user-attachments/assets/d27e3594-0a70-451a-b968-92cbc6be39c1" />
+
+---
 
 ## Equipe
 
@@ -159,7 +174,7 @@ Protótipo navegável disponível no [Figma](https://www.figma.com/proto/BxwZWjf
 
 ## Observações
 
-- Sem backend nesta etapa
-- Dados simulados no front-end
+- Projeto desenvolvido com dados simulados no front-end
+- Integrações com backend não fazem parte desta etapa do projeto
 - Foco em UI/UX e acessibilidade
 - Estrutura preparada para evolução futura
